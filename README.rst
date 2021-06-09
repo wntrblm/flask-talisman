@@ -337,10 +337,11 @@ At this writing, most browsers support the ``Feature-Policy`` HTTP Header name.
 See the `Permissions Policy`_ and `Document Policy`_ sections should you wish
 to set these.
 
-The default feature policy is empty, as this is the default expected behaviour.
 Note that the Feature Policy was not progress beyond a `draft https://wicg.github.io/feature-policy/`
 before being renamed, but is `supported in some form in most browsers
 <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy#Browser_compatibility>`_.
+
+The default feature policy is empty, as this is the default expected behaviour.
 
 Geolocation Example
 ~~~~~~~~~~~~~~~~~~~
@@ -363,6 +364,8 @@ and it is recommended to still set the ``Feature-Policy`` HTTP Header.
 Permission Policy support is included in Talisman for when this becomes more
 widely supported.
 
+Note that the `Permission Policy is still an Editor's Draft <https://www.w3.org/TR/permissions-policy/>`_.
+
 When the same feature or permission is set in both Feature Policy and Permission Policy,
 the Permission Policy setting will take precedence in browsers that support both.
 
@@ -371,8 +374,6 @@ as can be seen from the ``geolocation`` examples provided.
 
 The default Permissions Policy is ``interest-cohort=()``, which opts sites out of
 `Federated Learning of Cohorts <https://wicg.github.io/floc/>`_ an interest-based advertising initiative.
-
-Note that the `Permission Policy is still an Editor's Draft <https://www.w3.org/TR/permissions-policy/>`_.
 
 Permission Policy can be set either using a dictionary, or using a string.
 
@@ -405,8 +406,9 @@ and it is recommended to still set the ``Feature-Policy`` HTTP Header.
 Document Policy support is included in Talisman for when this becomes more
 widely supported.
 
-The default Document Policy is empty, as this is the default expected behaviour.
 Note that the `Document Policy is still an Editors Draft <https://w3c.github.io/webappsec-feature-policy/document-policy.html>`_.
+
+The default Document Policy is empty, as this is the default expected behaviour.
 
 Document Policy can be set either using a dictionary, or using a string.
 
