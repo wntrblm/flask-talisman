@@ -113,7 +113,7 @@ class Talisman(object):
                 https://hstspreload.org.
             strict_transport_security_max_age: How long HSTS headers are
                 honored by the browser.
-            strict_transport_security_include_subdomain: Whether to include
+            strict_transport_security_include_subdomains: Whether to include
                 all subdomains when setting HSTS.
             content_security_policy: A string or dictionary describing the
                 content security policy for the response.
