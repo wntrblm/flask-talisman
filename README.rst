@@ -364,7 +364,7 @@ and it is recommended to still set the ``Feature-Policy`` HTTP Header.
 Permission Policy support is included in Talisman for when this becomes more
 widely supported.
 
-Note that the `Permission Policy is still an Editor's Draft <https://www.w3.org/TR/permissions-policy/>`_.
+Note that the `Permission Policy is still an Working Draft <https://www.w3.org/TR/permissions-policy/>`_.
 
 When the same feature or permission is set in both Feature Policy and Permission Policy,
 the Permission Policy setting will take precedence in browsers that support both.
@@ -406,7 +406,7 @@ and it is recommended to still set the ``Feature-Policy`` HTTP Header.
 Document Policy support is included in Talisman for when this becomes more
 widely supported.
 
-Note that the `Document Policy is still an Editors Draft <https://w3c.github.io/webappsec-feature-policy/document-policy.html>`_.
+Note that the `Document Policy is still an Unofficial Draft <https://wicg.github.io/document-policy/>`_.
 
 The default Document Policy is empty, as this is the default expected behaviour.
 
