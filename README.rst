@@ -39,7 +39,8 @@ The default configuration:
 -  Sets a strict `Referrer-Policy <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy>`_
    of ``strict-origin-when-cross-origin`` that governs which referrer information should be included with
    requests made.
--  Disables ingest-cohort by default in the `Permissions-Policy <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy>`_ like `Drupal <https://www.drupal.org/project/drupal/issues/3209628>`_ to enhance privacy protection.
+-  Disables interest-cohort by default in the `Permissions-Policy <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy>`_
+   like `Drupal <https://www.drupal.org/project/drupal/issues/3209628>`_ to enhance privacy protection.
 
 
 In addition to Talisman, you **should always use a cross-site request
@@ -327,6 +328,32 @@ As you can see above the policy can be defined simply just like the official
 specification requires the HTTP header to be set: As a semicolon separated
 list of individual CSP directives.
 
+Feature Policy
+--------------
+
+Note: Feature Policy has largely been `renamed Permissions Policy <https://github.com/w3c/webappsec-feature-policy/issues/359>`_
+in the latest draft and some features are likely to move to Document Policy.
+At this writing, most browsers support the ``Feature-Policy`` HTTP Header name.
+See the `Permissions Policy`_ and `Document Policy`_ sections should you wish
+to set these.
+
+The default feature policy is empty, as this is the default expected behaviour.
+Note that the Feature Policy was not progress beyond a `draft https://wicg.github.io/feature-policy/`
+before being renamed, but is `supported in some form in most browsers
+<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy#Browser_compatibility>`_.
+
+Geolocation Example
+~~~~~~~~~~~~~~~~~~~
+
+Disable access to Geolocation interface.
+
+.. code:: python
+
+    feature_policy = {
+        'geolocation': '\'none\''
+    }
+    talisman = Talisman(app, feature_policy=feature_policy)
+
 Permissions Policy
 ------------------
 
@@ -336,7 +363,15 @@ and it is recommended to still set the ``Feature-Policy`` HTTP Header.
 Permission Policy support is included in Talisman for when this becomes more
 widely supported.
 
-The default permissions policy is empty, as this is the default expected behaviour.
+When the same feature or permission is set in both Feature Policy and Permission Policy,
+the Permission Policy setting will take precedence in browsers that support both.
+
+It should be noted that the syntax differs between Feature Policy and Permission Policy
+as can be seen from the ``geolocation`` examples provided.
+
+The default Permissions Policy is ``interest-cohort=()``, which opts sites out of
+`Federated Learning of Cohorts <https://wicg.github.io/floc/>`_ an interest-based advertising initiative.
+
 Note that the `Permission Policy is still an Editor's Draft <https://www.w3.org/TR/permissions-policy/>`_.
 
 Permission Policy can be set either using a dictionary, or using a string.
@@ -370,7 +405,7 @@ and it is recommended to still set the ``Feature-Policy`` HTTP Header.
 Document Policy support is included in Talisman for when this becomes more
 widely supported.
 
-The default permissions policy is empty, as this is the default expected behaviour.
+The default Document Policy is empty, as this is the default expected behaviour.
 Note that the `Document Policy is still an Editors Draft <https://w3c.github.io/webappsec-feature-policy/document-policy.html>`_.
 
 Document Policy can be set either using a dictionary, or using a string.
@@ -393,32 +428,6 @@ Forbid oversized-images using string syntax:
 
     document_policy = 'oversized-images=?0'
     talisman = Talisman(app, document_policy=document_policy)
-
-Feature Policy
---------------
-
-Note: Feature Policy has largely been `renamed Permissions Policy <https://github.com/w3c/webappsec-feature-policy/issues/359>`_
-in the latest draft and some features are likely to move to Document Policy.
-At this writing, most browsers support the ``Feature-Policy`` HTTP Header name._
-See the `Permissions Policy`_ and `Document Policy`_ sections should you wish
-to set these.
-
-The default feature policy is empty, as this is the default expected behaviour.
-Note that the Feature Policy is still a `draft https://wicg.github.io/feature-policy/`
-but is `supported in some form in most browsers
-<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy#Browser_compatibility>`_.
-
-Geolocation Example
-~~~~~~~~~~~~~~~~~~~
-
-Disable access to Geolocation interface.
-
-.. code:: python
-
-    feature_policy = {
-        'geolocation': '\'none\''
-    }
-    talisman = Talisman(app, feature_policy=feature_policy)
 
 Disclaimer
 ----------

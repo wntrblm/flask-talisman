@@ -283,8 +283,8 @@ class TestTalismanExtension(unittest.TestCase):
     def testPermissionsPolicy(self):
         # default disabled FLoC
         response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)
-        document_policy = response.headers['Permissions-Policy']
-        self.assertIn('interest-cohort=()', document_policy)
+        permissions_policy = response.headers['Permissions-Policy']
+        self.assertIn('interest-cohort=()', permissions_policy)
 
         self.talisman.permissions_policy['geolocation'] = '()'
         response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)
@@ -300,8 +300,8 @@ class TestTalismanExtension(unittest.TestCase):
         # no policy
         self.talisman.permissions_policy = {}
         response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)
-        document_policy = response.headers.get('Permissions-Policy')
-        self.assertEqual(None, document_policy)
+        permissions_policy = response.headers.get('Permissions-Policy')
+        self.assertEqual(None, permissions_policy)
 
         # string policy at initialization
         app = flask.Flask(__name__)
