@@ -220,6 +220,9 @@ class Talisman(object):
         view_options.setdefault(
             'content_security_policy', self.content_security_policy)
         view_options.setdefault(
+            'content_security_policy_nonce_in',
+            self.content_security_policy_nonce_in)
+        view_options.setdefault(
             'permissions_policy', self.permissions_policy)
         view_options.setdefault(
             'document_policy', self.document_policy)
@@ -272,7 +275,7 @@ class Talisman(object):
         local_options = self._get_local_options()
         if (
                 local_options['content_security_policy'] and
-                self.content_security_policy_nonce_in and
+                local_options['content_security_policy_nonce_in'] and
                 not getattr(flask.request, 'csp_nonce', None)):
             flask.request.csp_nonce = get_random_string(NONCE_LENGTH)
 
@@ -294,6 +297,7 @@ class Talisman(object):
         return policy
 
     def _parse_policy(self, policy):
+        local_options = self._get_local_options()
         if isinstance(policy, string_types):
             # parse the string into a policy dict
             policy_string = policy
@@ -311,7 +315,7 @@ class Talisman(object):
 
             if (
                     hasattr(flask.request, 'csp_nonce') and
-                    section in self.content_security_policy_nonce_in):
+                    local_options['content_security_policy_nonce_in']):
                 policy_part += " 'nonce-{}'".format(flask.request.csp_nonce)
 
             policies.append(policy_part)
@@ -407,8 +411,9 @@ class Talisman(object):
         """Use talisman as a decorator to configure options for a particular
         view.
 
-        Only frame_options, frame_options_allow_from, and
-        content_security_policy can be set on a per-view basis.
+        Only force_https, frame_options, frame_options_allow_from,
+        content_security_policy, content_security_policy_nonce_in
+        and feature_policy can be set on a per-view basis.
 
         Example:
 
