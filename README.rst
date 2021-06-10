@@ -331,14 +331,14 @@ list of individual CSP directives.
 Feature Policy
 --------------
 
-Note: Feature Policy has largely been `renamed Permissions Policy <https://github.com/w3c/webappsec-feature-policy/issues/359>`_
+**Note:** Feature Policy has largely been `renamed Permissions Policy <https://github.com/w3c/webappsec-feature-policy/issues/359>`_
 in the latest draft and some features are likely to move to Document Policy.
 At this writing, most browsers support the ``Feature-Policy`` HTTP Header name.
-See the `Permissions Policy`_ and `Document Policy`_ sections should you wish
+See the `Permissions Policy`_ and `Document Policy`_ sections below should you wish
 to set these.
 
-Note that the Feature Policy was not progress beyond a `draft https://wicg.github.io/feature-policy/`
-before being renamed, but is `supported in some form in most browsers
+Also note that the Feature Policy specification did not progress beyond the `draft https://wicg.github.io/feature-policy/`
+stage before being renamed, but is `supported in some form in most browsers
 <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy#Browser_compatibility>`_.
 
 The default feature policy is empty, as this is the default expected behaviour.
