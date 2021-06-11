@@ -213,6 +213,7 @@ class TestTalismanExtension(unittest.TestCase):
 
     def testContentSecurityPolicyNonce(self):
         self.talisman.content_security_policy['script-src'] = "'self'"
+        self.talisman.content_security_policy['style-src'] = "example.com"
         self.talisman.content_security_policy_nonce_in = ['script-src']
 
         with self.app.test_client() as client:
@@ -223,6 +224,18 @@ class TestTalismanExtension(unittest.TestCase):
 
             self.assertIn(
                 "script-src 'self' 'nonce-{}'".format(flask.request.csp_nonce),
+                csp
+            )
+            self.assertNotIn(
+                "style-src 'self'",
+                csp
+            )
+            self.assertNotIn(
+                "style-src example.com 'nonce-{}'".format(flask.request.csp_nonce),
+                csp
+            )
+            self.assertIn(
+                "style-src example.com",
                 csp
             )
             self.assertIn(
