@@ -321,7 +321,7 @@ class Talisman(object):
 
             if (
                     hasattr(flask.request, 'csp_nonce') and
-                    local_options['content_security_policy_nonce_in']):
+                    section in local_options['content_security_policy_nonce_in']):
                 policy_part += " 'nonce-{}'".format(flask.request.csp_nonce)
 
             policies.append(policy_part)
