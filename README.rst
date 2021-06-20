@@ -32,7 +32,7 @@ The default configuration:
    to prevent content type sniffing.
 -  Sets a strict `Content Security
    Policy <https://developer.mozilla.org/en-US/docs/Web/Security/CSP/Introducing_Content_Security_Policy>`__
-   of ``default-src: 'self'``. This is intended to almost completely
+   of ``default-src: 'self', 'object-src': 'none'``. This is intended to almost completely
    prevent Cross Site Scripting (XSS) attacks. This is probably the only
    setting that you should reasonably change. See the
    `Content Security Policy`_ section.
@@ -95,7 +95,7 @@ Options
 -  ``strict_transport_security_include_subdomains``, default ``True``,
    whether subdomains should also use HSTS.
 
--  ``content_security_policy``, default ``default-src: 'self'``, see the
+-  ``content_security_policy``, default ``default-src: 'self'`, 'object-src': 'none'``, see the
    `Content Security Policy`_ section (`about Content Security Policy <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy>`_).
 -  ``content_security_policy_nonce_in``, default ``[]``. Adds a per-request nonce
    value to the flask request object and also to the specified CSP header section.
@@ -180,12 +180,14 @@ Example 1
 ~~~~~~~~~
 
 This is the default policy. A web site administrator wants all content
-to come from the site's own origin (this excludes subdomains.)
+to come from the site's own origin (this excludes subdomains) and disallow
+legacy HTML elements.
 
 .. code:: python
 
     csp = {
-        'default-src': '\'self\''
+        'default-src': '\'self\'',
+        'object-src': '\'none\'',
     }
     talisman = Talisman(app, content_security_policy=csp)
 
