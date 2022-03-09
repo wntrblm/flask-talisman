@@ -294,10 +294,11 @@ class TestTalismanExtension(unittest.TestCase):
         self.assertIn('vibrate \'none\'', response.headers['Feature-Policy'])
 
     def testPermissionsPolicy(self):
-        # default disabled FLoC
+        # default disabled FLoC and Topics API
         response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)
         permissions_policy = response.headers['Permissions-Policy']
         self.assertIn('interest-cohort=()', permissions_policy)
+        self.assertIn('browsing-topics=()', permissions_policy)
 
         self.talisman.permissions_policy['geolocation'] = '()'
         response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)

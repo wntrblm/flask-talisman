@@ -39,7 +39,7 @@ The default configuration:
 -  Sets a strict `Referrer-Policy <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy>`_
    of ``strict-origin-when-cross-origin`` that governs which referrer information should be included with
    requests made.
--  Disables interest-cohort by default in the `Permissions-Policy <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy>`_
+-  Disables interest-cohort and browsing-topics by default in the `Permissions-Policy <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy>`_
    like `Drupal <https://www.drupal.org/project/drupal/issues/3209628>`_ to enhance privacy protection.
 
 
@@ -116,7 +116,7 @@ Options
 
 -  ``feature_policy``, default ``{}``, see the `Feature Policy`_ section (`about Feature Policy <https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy>`_).
 
--  ``permissions_policy``, default ``{'interest-cohort': '()'}``, see the `Permissions Policy`_ section (`about Permissions Policy <https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy>`_).
+-  ``permissions_policy``, default ``{'interest-cohort': '()', 'browsing-topics': '()'}``, see the `Permissions Policy`_ section (`about Permissions Policy <https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy>`_).
 -  ``document_policy``, default ``{}``, see the `Document Policy`_ section (`about Document Policy <https://wicg.github.io/document-policy/>`_).
 
 -  ``session_cookie_secure``, default ``True``, set the session cookie
@@ -374,8 +374,9 @@ the Permission Policy setting will take precedence in browsers that support both
 It should be noted that the syntax differs between Feature Policy and Permission Policy
 as can be seen from the ``geolocation`` examples provided.
 
-The default Permissions Policy is ``interest-cohort=()``, which opts sites out of
-`Federated Learning of Cohorts <https://wicg.github.io/floc/>`_ an interest-based advertising initiative.
+The default Permissions Policy is ``interest-cohort=() browsing-topics=()``, which opts sites out of
+`Federated Learning of Cohorts <https://wicg.github.io/floc/>`_ an interest-based advertising initiative and
+its follow-up Topics API.
 
 Permission Policy can be set either using a dictionary, or using a string.
 
