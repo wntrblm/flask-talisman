@@ -46,7 +46,6 @@ GOOGLE_CSP_POLICY = {
 }
 
 DEFAULT_PERMISSIONS_POLICY = {
-    'interest-cohort': '()'
 }
 
 DEFAULT_DOCUMENT_POLICY = {
