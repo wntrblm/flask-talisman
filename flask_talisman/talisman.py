@@ -14,7 +14,6 @@
 from collections import OrderedDict
 
 import flask
-from six import iteritems, string_types
 
 
 DENY = 'DENY'
@@ -293,7 +292,7 @@ class Talisman(object):
             return policy
 
         policies = []
-        for section, content in iteritems(policy):
+        for section, content in policy.items():
             policy_part = '{}={}'.format(section, content)
 
             policies.append(policy_part)
@@ -304,7 +303,7 @@ class Talisman(object):
 
     def _parse_policy(self, policy):
         local_options = self._get_local_options()
-        if isinstance(policy, string_types):
+        if isinstance(policy, str):
             # parse the string into a policy dict
             policy_string = policy
             policy = OrderedDict()
@@ -314,8 +313,8 @@ class Talisman(object):
                 policy[policy_parts[0]] = " ".join(policy_parts[1:])
 
         policies = []
-        for section, content in iteritems(policy):
-            if not isinstance(content, string_types):
+        for section, content in policy.items():
+            if not isinstance(content, str):
                 content = ' '.join(content)
             policy_part = '{} {}'.format(section, content)
 

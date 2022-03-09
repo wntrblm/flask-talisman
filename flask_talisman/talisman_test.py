@@ -18,7 +18,6 @@ import unittest
 
 import flask
 from flask_talisman import ALLOW_FROM, DENY, NONCE_LENGTH, Talisman
-from six import iteritems
 
 
 HTTPS_ENVIRON = {'wsgi.url_scheme': 'https'}
@@ -57,7 +56,7 @@ class TestTalismanExtension(unittest.TestCase):
             'Referrer-Policy': 'strict-origin-when-cross-origin'
         }
 
-        for key, value in iteritems(headers):
+        for key, value in headers.items():
             self.assertEqual(response.headers.get(key), value)
 
         csp = response.headers.get('Content-Security-Policy')
