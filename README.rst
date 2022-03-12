@@ -167,6 +167,9 @@ Content Security Policy
 The default content security policy is extremely strict and will
 prevent loading any resources that are not in the same domain as the
 application. Most web applications will need to change this policy.
+If you're not ready to deploy Content Security Policy, you can set
+`content_security_policy` to `False` to disable sending this header
+entirely.
 
 A slightly more permissive policy is available at
 ``flask_talisman.GOOGLE_CSP_POLICY``, which allows loading Google-hosted JS
