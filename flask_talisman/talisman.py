@@ -46,6 +46,8 @@ GOOGLE_CSP_POLICY = {
 }
 
 DEFAULT_PERMISSIONS_POLICY = {
+    # Disable Topics API
+    'browsing-topics': '()'
 }
 
 DEFAULT_DOCUMENT_POLICY = {
