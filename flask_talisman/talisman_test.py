@@ -303,12 +303,14 @@ class TestTalismanExtension(unittest.TestCase):
         self.talisman.permissions_policy['geolocation'] = '()'
         response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)
         permissions_policy = response.headers['Permissions-Policy']
+        self.assertIn('browsing-topics=()', permissions_policy)
         self.assertIn('geolocation=()', permissions_policy)
 
         self.talisman.permissions_policy['geolocation'] = '()'
         self.talisman.permissions_policy['fullscreen'] = '(self, "https://example.com")'
         response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)
         permissions_policy = response.headers['Permissions-Policy']
+        self.assertIn('browsing-topics=()', permissions_policy)
         self.assertIn('geolocation=(), fullscreen=(self, "https://example.com")', permissions_policy)
 
         # no policy
