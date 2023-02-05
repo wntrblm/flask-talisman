@@ -384,18 +384,18 @@ Disable access to Geolocation interface and Microphone using dictionary syntax
 
 .. code:: python
 
-    permission_policy = {
+    permissions_policy = {
         'geolocation': '()',
         'microphone': '()'
     }
-    talisman = Talisman(app, permission_policy=permission_policy)
+    talisman = Talisman(app, permissions_policy=permissions_policy)
 
 Disable access to Geolocation interface and Microphone using string syntax
 
 .. code:: python
 
-    permission_policy = 'geolocation=(), microphone=()'
-    talisman = Talisman(app, permission_policy=permission_policy)
+    permissions_policy = 'geolocation=(), microphone=()'
+    talisman = Talisman(app, permissions_policy=permissions_policy)
 
 Document Policy
 ---------------
