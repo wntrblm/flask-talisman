@@ -51,7 +51,6 @@ class TestTalismanExtension(unittest.TestCase):
             'X-Frame-Options': 'SAMEORIGIN',
             'Strict-Transport-Security':
             'max-age=31556926; includeSubDomains',
-            'X-XSS-Protection': '1; mode=block',
             'X-Content-Type-Options': 'nosniff',
             'Referrer-Policy': 'strict-origin-when-cross-origin'
         }
@@ -84,6 +83,14 @@ class TestTalismanExtension(unittest.TestCase):
         self.talisman.force_https = False
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
+
+    def testForceXSSProtectionOptions(self):
+        self.talisman.x_xss_protection = True
+
+        # HTTP request from Proxy
+        response = self.client.get('/')
+        self.assertIn('X-XSS-Protection', response.headers)
+        self.assertEqual(response.headers['X-XSS-Protection'], '1; mode=block')
 
     def testHstsOptions(self):
         self.talisman.force_ssl = False
