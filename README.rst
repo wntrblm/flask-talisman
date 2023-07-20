@@ -126,7 +126,7 @@ Options
    directly and only save them instead.
 
 -  ``x_content_type_options``, default ``True``, Protects against MIME sniffing vulnerabilities (`about Content Type Options <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options>`_).
--  ``x_xss_protection``, default ``False``, Protects against cross-site scripting (XSS) attacks (`about XSS Protection <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection>`_).
+-  ``x_xss_protection``, default ``False``, Protects against cross-site scripting (XSS) attacks (`about XSS Protection <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection>`_). This option is disabled by default because no modern browser (`supports this header <https://caniuse.com/mdn-http_headers_x-xss-protection>`_) anymore.
 
 For a full list of (security) headers, check out: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers.
 
