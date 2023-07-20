@@ -23,10 +23,6 @@ The default configuration:
    `X-Frame-Options <https://developer.mozilla.org/en-US/docs/Web/HTTP/X-Frame-Options>`_
    to ``SAMEORIGIN`` to avoid
    `clickjacking <https://en.wikipedia.org/wiki/Clickjacking>`_.
--  Sets `X-XSS-Protection
-   <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection>`_
-   to enable a cross site scripting filter for IE and Safari (note Chrome has
-   removed this and Firefox never supported it).
 -  Sets `X-Content-Type-Options
    <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options>`_
    to prevent content type sniffing.
@@ -130,7 +126,7 @@ Options
    directly and only save them instead.
 
 -  ``x_content_type_options``, default ``True``, Protects against MIME sniffing vulnerabilities (`about Content Type Options <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options>`_).
--  ``x_xss_protection``, default ``True``, Protects against cross-site scripting (XSS) attacks (`about XSS Protection <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection>`_).
+-  ``x_xss_protection``, default ``False``, Protects against cross-site scripting (XSS) attacks (`about XSS Protection <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection>`_).
 
 For a full list of (security) headers, check out: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers.
 
