@@ -90,7 +90,7 @@ class Talisman(object):
             session_cookie_http_only=True,
             session_cookie_samesite=DEFAULT_SESSION_COOKIE_SAMESITE,
             x_content_type_options=True,
-            x_xss_protection=True):
+            x_xss_protection=False):
         """
         Initialization.
 
