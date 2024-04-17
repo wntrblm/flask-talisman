@@ -1,0 +1,1 @@
+exclude flask_talisman/talisman_test.py
